@@ -3,8 +3,8 @@
 header{background:linear-gradient(180deg,#ffffff, #e6fffb);padding:48px 24px 28px;border-bottom:1px solid #e5e7eb}
 /* Logo-only header */
 .brand { display:flex; align-items:center; gap:12px; }
-.logo { width: 260px; height: auto; display:block; } /* adjust width to suit your logo */
-@media (max-width: 520px) { .logo { width: 200px; } }
+.logo { width: 300px; height: auto; display:block; } /* adjust width to suit your logo */
+@media (max-width: 520px) { .logo { width: 260px; } }
 
 /* (Optional) visually-hidden text helper for accessibility */
 .sr-only {
