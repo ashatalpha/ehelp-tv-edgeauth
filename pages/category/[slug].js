@@ -35,7 +35,7 @@ export default function CategoryPage({ categoryName, items }) {
       <header className="wrap hero">
         <div className="brand">
           <a href="/" aria-label="eHelp.tv home">
-            <img className="logo" src="/logo.svg" alt="eHelp.tv" />
+            <img className="logo" src="/logo.png" alt="eHelp.tv" />
           </a>
         </div>
 
