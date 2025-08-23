@@ -32,10 +32,11 @@ export default function CategoryPage({ categoryName, items }) {
 
       <header className="wrap hero">
         <div className="brand">
-          <img className="logo" src="/favicon.svg" alt="" />
-          <div>
+  <a href="/" aria-label="eHelp.tv home">
+    <img className="logo" src="/logo.png" alt="eHelp.tv" />
+  </a>
+</div>
             <h1>{categoryName}</h1>
-            <p className="tagline">Popular how-to topics in {categoryName}</p>
           </div>
         </div>
         <p className="note">
