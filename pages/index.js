@@ -75,17 +75,16 @@ export default function Home() {
           <div className="grid cards">
             {POPULAR_TODAY.map((item, i) => (
               <a
-                key={i}
-                className="card card-pop"
-                href={`/category/${(item.category).toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
-                title={`Open ${item.category}`}
-              >
-                <div className="card-top">
-                  <span className="chip">{item.category}</span>
-                </div>
-                <h3>{item.query}</h3>
-                <p className="muted">~{item.volume.toLocaleString()} monthly searches</p>
-              </a>
+  key={i}
+  className="card card-pop"
+  href={`/q/${(item.query).toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
+>
+  <div className="card-top">
+    <span className="chip">{item.category}</span>
+  </div>
+  <h3>{item.query}</h3>
+  <p className="muted">~{item.volume.toLocaleString()} monthly searches</p>
+</a>
             ))}
           </div>
         </section>
@@ -103,14 +102,16 @@ export default function Home() {
               </button>
               {CATEGORIES.map((c) => (
                 <a
-                  key={c.name}
-                  className={`pill ${activeCat===c.name ? 'pill-active' : ''}`}
-                  href={`/category/${(c.name).toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
-                  onClick={(e)=>{ e.preventDefault(); setActiveCat(c.name); }}
-                  title="Open category page (Cmd/Ctrl+Click to open new tab)"
-                >
-                  {c.name}
-                </a>
+  key={i}
+  className="card card-pop"
+  href={`/q/${(item.query).toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
+>
+  <div className="card-top">
+    <span className="chip">{item.category}</span>
+  </div>
+  <h3>{item.query}</h3>
+  <p className="muted">~{item.volume.toLocaleString()} monthly searches</p>
+</a>
               ))}
             </div>
           </div>
