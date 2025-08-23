@@ -18,3 +18,23 @@ h2{margin-top:28px}
 .cta{background:#0ea5a4;color:#fff;border-radius:16px;padding:24px;margin:24px 0}
 .button{display:inline-block;background:#fff;color:#0f172a;padding:10px 14px;border-radius:10px;text-decoration:none}
 footer{border-top:1px solid #e5e7eb;color:#475569;background:#fff}
+/* --- Homepage Enhancements --- */
+.hero { background: linear-gradient(180deg,#ffffff,#e6fffb); padding-bottom: 20px; }
+.searchbar { display:flex; gap:8px; margin-top:14px; }
+.searchbar input { flex:1; padding:12px 14px; border:1px solid #cbd5e1; border-radius:12px; background:#fff; }
+.searchbar button { padding:12px 16px; border:0; background:#0ea5a4; color:#fff; border-radius:12px; cursor:pointer; }
+.searchbar button:hover{ opacity:.95; }
+
+.section { margin: 28px 0; }
+.section-head { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.viewall { font-size:14px; color:#0ea5a4; text-decoration:none; }
+
+.cards .card { position:relative; }
+.card-pop h3 { margin-top:6px; }
+.muted { color:#64748b; font-size:13px; margin:6px 0 0; }
+
+.chip { display:inline-block; font-size:12px; padding:4px 8px; border-radius:999px; background:#e6fffb; color:#0f172a; border:1px solid #99f6e4; }
+
+.filters { display:flex; gap:8px; flex-wrap:wrap; }
+.pill { padding:8px 12px; border-radius:999px; border:1px solid #cbd5e1; background:#fff; cursor:pointer; }
+.pill-active { background:#0ea5a4; color:#fff; border-color:#0ea5a4; }
