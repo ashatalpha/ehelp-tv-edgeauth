@@ -34,10 +34,10 @@ export default function CategoryPage({ categoryName, items }) {
 
       <header className="wrap hero">
         <div className="brand">
-          <a href="/" aria-label="eHelp.tv home">
-            <img className="logo" src="/logo.png" alt="eHelp.tv" />
-          </a>
-        </div>
+  <a href="/" aria-label="eHelp.tv home">
+    <img className="logo" src="/logo.png" alt="eHelp.tv" />
+  </a>
+</div>
 
         {/* Title block sits OUTSIDE the brand so tags stay balanced */}
         <div style={{ marginTop: 12 }}>
