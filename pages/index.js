@@ -1,11 +1,38 @@
+// /pages/index.js
 import Head from 'next/head'
+import { useMemo, useState } from 'react'
+import { POPULAR_TODAY, CATEGORIES } from '../lib/data'
 
 export default function Home() {
+  const [search, setSearch] = useState('')
+  const [activeCat, setActiveCat] = useState('All')
+
+  const allQueries = useMemo(() => {
+    const base = []
+    CATEGORIES.forEach(cat => {
+      cat.items.forEach(q => base.push({ query: q, category: cat.name }))
+    })
+    return base
+  }, [])
+
+  const filtered = useMemo(() => {
+    let data = activeCat === 'All'
+      ? allQueries
+      : allQueries.filter(q => q.category === activeCat)
+    if (search.trim()) {
+      const s = search.trim().toLowerCase()
+      data = data.filter(q => q.query.toLowerCase().includes(s))
+    }
+    return data.slice(0, 24) // keep it tight on homepage
+  }, [activeCat, allQueries, search])
+
   const onSearch = () => {
-    const input = document.getElementById('q')
-    const q = (input && input.value || '').trim()
-    if (!q) { alert('Type a question first 🙂'); return; }
-    alert('Search: ' + q + '\n\n(Next step: connect to AI and show results here.)')
+    if (!search.trim()) {
+      alert('Type a question first 🙂')
+      return
+    }
+    // Placeholder: plug your AI search here later
+    alert('Search: ' + search + '\n\n(Next step: call AI and show results.)')
   }
 
   return (
@@ -17,7 +44,8 @@ export default function Home() {
         <link rel="stylesheet" href="/styles.css" />
       </Head>
 
-      <header className="wrap">
+      {/* HERO */}
+      <header className="wrap hero">
         <div className="brand">
           <img className="logo" src="/favicon.svg" alt="" />
           <div>
@@ -25,40 +53,78 @@ export default function Home() {
             <p className="tagline">Ask anything. Learn it fast.</p>
           </div>
         </div>
-        <form className="search" onSubmit={(e) => e.preventDefault()}>
-          <input id="q" type="text" placeholder="Try: How do I fix a dripping faucet?" aria-label="Search how-to" />
-          <button id="btn" type="button" onClick={onSearch}>Search</button>
-        </form>
-        <p className="note">Starter template — wire up this search to AI later.</p>
+        <div className="searchbar">
+          <input
+            value={search}
+            onChange={(e)=>setSearch(e.target.value)}
+            type="text"
+            placeholder="Try: How to fix a leaky faucet?"
+            aria-label="Search how-to"
+          />
+          <button type="button" onClick={onSearch}>Search</button>
+        </div>
+        <p className="note">Starter layout — plug your AI search in later.</p>
       </header>
 
       <main className="wrap">
-        <section>
-          <h2>Popular Categories</h2>
-          <div className="grid" id="cats">
-            <a className="card" href="#"><h3>Home Fixes</h3><p>Plumbing, paint, tools</p></a>
-            <a className="card" href="#"><h3>Tech</h3><p>Phones, computers, apps</p></a>
-            <a className="card" href="#"><h3>Cooking</h3><p>Quick meals & basics</p></a>
-            <a className="card" href="#"><h3>Money</h3><p>Budgeting & taxes</p></a>
-            <a className="card" href="#"><h3>Creative</h3><p>Video, design, music</p></a>
-            <a className="card" href="#"><h3>Cars</h3><p>Maintenance & repairs</p></a>
+
+        {/* POPULAR TODAY */}
+        <section className="section">
+          <div className="section-head">
+            <h2>Popular Today</h2>
+            <a className="viewall" href="#">View all</a>
+          </div>
+          <div className="grid cards">
+            {POPULAR_TODAY.map((item, i) => (
+              <a key={i} className="card card-pop" href="#">
+                <div className="card-top">
+                  <span className="chip">{item.category}</span>
+                </div>
+                <h3>{item.query}</h3>
+                <p className="muted">~{item.volume.toLocaleString()} monthly searches</p>
+              </a>
+            ))}
           </div>
         </section>
 
-        <section>
-          <h2>How It Works</h2>
-          <ol className="how">
-            <li><strong>Ask:</strong> Type your question.</li>
-            <li><strong>Watch & Read:</strong> We show the best videos + simple steps.</li>
-            <li><strong>Save:</strong> Bookmark what helps you.</li>
-          </ol>
+        {/* BROWSE BY CATEGORY */}
+        <section className="section">
+          <div className="section-head">
+            <h2>Browse by Category</h2>
+            <div className="filters">
+              <button
+                className={`pill ${activeCat==='All' ? 'pill-active' : ''}`}
+                onClick={()=>setActiveCat('All')}
+              >All</button>
+              {CATEGORIES.map((c) => (
+                <button
+                  key={c.name}
+                  className={`pill ${activeCat===c.name ? 'pill-active' : ''}`}
+                  onClick={()=>setActiveCat(c.name)}
+                >
+                  {c.name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid cards">
+            {filtered.map((item, i) => (
+              <a key={`${item.query}-${i}`} className="card" href="#">
+                <span className="chip">{item.category}</span>
+                <h3>{item.query}</h3>
+              </a>
+            ))}
+          </div>
         </section>
 
+        {/* CTA */}
         <section className="cta">
-          <h2>Want to teach?</h2>
+          <h2>Creators wanted</h2>
           <p>Upload tutorials and get paid when people learn from you. (Coming soon)</p>
           <a className="button" href="#">Join the waitlist</a>
         </section>
+
       </main>
 
       <footer className="wrap">
