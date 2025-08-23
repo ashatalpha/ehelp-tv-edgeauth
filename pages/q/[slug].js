@@ -53,11 +53,11 @@ export default function QueryPage({ slug, query, category }) {
       </Head>
 
       <header className="wrap hero">
-        <div className="brand">
-          <a href="/" aria-label="eHelp.tv home">
-            <img className="logo" src="/logo.svg" alt="eHelp.tv" />
-          </a>
-        </div>
+       <div className="brand">
+  <a href="/" aria-label="eHelp.tv home">
+    <img className="logo" src="/logo.png" alt="eHelp.tv" />
+  </a>
+</div>
 
         <div style={{marginTop: 12}}>
           <h1>{query}</h1>
