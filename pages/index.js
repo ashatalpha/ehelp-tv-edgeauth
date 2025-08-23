@@ -92,21 +92,24 @@ export default function Home() {
           <div className="section-head">
             <h2>Browse by Category</h2>
             <div className="filters">
-              <button
-                className={`pill ${activeCat==='All' ? 'pill-active' : ''}`}
-                onClick={()=>setActiveCat('All')}
-              >All</button>
-              {CATEGORIES.map((c) => (
-                <button
-                  key={c.name}
-                  className={`pill ${activeCat===c.name ? 'pill-active' : ''}`}
-                  onClick={()=>setActiveCat(c.name)}
-                >
-                  {c.name}
-                </button>
-              ))}
-            </div>
-          </div>
+  <button
+    className={`pill ${activeCat==='All' ? 'pill-active' : ''}`}
+    onClick={()=>setActiveCat('All')}
+  >
+    All
+  </button>
+  {CATEGORIES.map((c) => (
+    <a
+      key={c.name}
+      className={`pill ${activeCat===c.name ? 'pill-active' : ''}`}
+      href={`/category/${(c.name).toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
+      onClick={(e)=>{ e.preventDefault(); setActiveCat(c.name); }}
+      title="Open category page (Cmd/Ctrl+Click to open new tab)"
+    >
+      {c.name}
+    </a>
+  ))}
+</div>
 
           <div className="grid cards">
             {filtered.map((item, i) => (
