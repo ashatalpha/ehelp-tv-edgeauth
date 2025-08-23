@@ -45,14 +45,11 @@ export default function Home() {
       </Head>
 
       {/* HERO */}
-      <header className="wrap hero">
-        <div className="brand">
-          <img className="logo" src="/favicon.svg" alt="" />
-          <div>
-            <h1>ehelp.tv</h1>
-            <p className="tagline">Ask anything. Learn it fast.</p>
-          </div>
-        </div>
+      <div className="brand">
+  <a href="/" aria-label="eHelp.tv home">
+    <img className="logo" src="/logo.png" alt="eHelp.tv" />
+  </a>
+</div>
         <div className="searchbar">
           <input
             value={search}
