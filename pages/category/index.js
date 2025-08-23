@@ -16,12 +16,10 @@ export default function CategoryIndex() {
 
       <header className="wrap hero">
         <div className="brand">
-          <img className="logo" src="/favicon.svg" alt="" />
-          <div>
-            <h1>Browse Categories</h1>
-            <p className="tagline">Find popular how-to topics by category</p>
-          </div>
-        </div>
+  <a href="/" aria-label="eHelp.tv home">
+    <img className="logo" src="/logo.png" alt="eHelp.tv" />
+  </a>
+</div>
       </header>
 
       <main className="wrap">
