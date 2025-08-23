@@ -67,54 +67,44 @@ export default function Home() {
       <main className="wrap">
 
         {/* POPULAR TODAY */}
-        <section className="section">
-          <div className="section-head">
-            <h2>Popular Today</h2>
-            <a className="viewall" href="/category">View all</a>
-          </div>
-          <div className="grid cards">
-            {POPULAR_TODAY.map((item, i) => (
-              <a
-  key={i}
-  className="card card-pop"
-  href={`/q/${(item.query).toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
->
-  <div className="card-top">
-    <span className="chip">{item.category}</span>
+<section className="section">
+  <div className="section-head">
+    <h2>Popular Today</h2>
+    <a className="viewall" href="/category">View all</a>
   </div>
-  <h3>{item.query}</h3>
-  <p className="muted">~{item.volume.toLocaleString()} monthly searches</p>
-</a>
-            ))}
-          </div>
-        </section>
+  <div className="grid cards">
+    {POPULAR_TODAY.map((item, i) => (
+      <a
+        key={i}
+        className="card card-pop"
+        href={`/q/${(item.query).toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
+        title={`Open ${item.category}`}
+      >
+        <div className="card-top">
+          <span className="chip">{item.category}</span>
+        </div>
+        <h3>{item.query}</h3>
+        <p className="muted">~{item.volume.toLocaleString()} monthly searches</p>
+      </a>
+    ))}
+  </div>
+</section>
 
         {/* BROWSE BY CATEGORY */}
         <section className="section">
-          <div className="section-head">
-            <h2>Browse by Category</h2>
-            <div className="filters">
-              <button
-                className={`pill ${activeCat==='All' ? 'pill-active' : ''}`}
-                onClick={()=>setActiveCat('All')}
-              >
-                All
-              </button>
-              {CATEGORIES.map((c) => (
-                <a
-  key={i}
-  className="card card-pop"
-  href={`/q/${(item.query).toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
->
-  <div className="card-top">
-    <span className="chip">{item.category}</span>
-  </div>
-  <h3>{item.query}</h3>
-  <p className="muted">~{item.volume.toLocaleString()} monthly searches</p>
-</a>
-              ))}
-            </div>
-          </div>
+          <div className="grid cards">
+  {filtered.map((row, i) => (
+    <a
+      key={`${row.query}-${i}`}
+      className="card"
+      href={`/q/${(row.query).toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
+      title={`Open ${row.query}`}
+    >
+      <span className="chip">{row.category}</span>
+      <h3>{row.query}</h3>
+    </a>
+  ))}
+</div>
 
           <div className="grid cards">
             {filtered.map((item, i) => (
