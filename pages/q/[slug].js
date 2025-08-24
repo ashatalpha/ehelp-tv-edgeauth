@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Header from '../../components/Header'
 import Link from 'next/link'
 import { POPULAR_TODAY, CATEGORIES } from '../../lib/data'
 import { toQuerySlug, fromQuerySlug } from '../../lib/slug'
@@ -52,7 +52,7 @@ export default function QueryPage({ slug, query, category }) {
         <link rel="stylesheet" href="/styles.css" />
       </Head>
 
-      <header className="wrap hero">
+      <Header title={query} subtitle={`Category: ${category}`} />
        <div className="brand">
   <a href="/" aria-label="eHelp.tv home">
     <img className="logo" src="/logo.png" alt="eHelp.tv" />
