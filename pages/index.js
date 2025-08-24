@@ -43,7 +43,7 @@ export default function Home() {
       </Head>
 
       {/* HERO */}
-      <header className="wrap hero">
+      <Header />
         <div className="brand">
           <a href="/" aria-label="eHelp.tv home">
             <img className="logo" src="/logo.png" alt="eHelp.tv" />
