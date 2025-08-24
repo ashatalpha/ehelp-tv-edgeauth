@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Header from '../components/Header'
 import { useMemo, useState } from 'react'
 import { POPULAR_TODAY, CATEGORIES } from '../lib/data'
 
