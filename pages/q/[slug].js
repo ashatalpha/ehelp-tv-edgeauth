@@ -1,22 +1,26 @@
-import Header from '../../components/Header'
+import Head from 'next/head'
 import Link from 'next/link'
+import Header from '../../components/Header'
 import { POPULAR_TODAY, CATEGORIES } from '../../lib/data'
 import { toQuerySlug, fromQuerySlug } from '../../lib/slug'
 
-// Build paths for all queries we know about
+// Build paths for all known queries
 export async function getStaticPaths() {
-  const all = []
-  // from categories
+  const paths = []
+
+  // From categories
   CATEGORIES.forEach(cat => {
     cat.items.forEach(q => {
-      all.push({ params: { slug: toQuerySlug(q) } })
+      paths.push({ params: { slug: toQuerySlug(q) } })
     })
   })
-  // from popular today (in case of extras)
+
+  // From "Popular Today" (in case of extras)
   POPULAR_TODAY.forEach(item => {
-    all.push({ params: { slug: toQuerySlug(item.query) } })
+    paths.push({ params: { slug: toQuerySlug(item.query) } })
   })
-  return { paths: all, fallback: false }
+
+  return { paths, fallback: false }
 }
 
 // Provide props for each page
@@ -24,7 +28,7 @@ export async function getStaticProps({ params }) {
   const slug = params.slug
   const queryText = fromQuerySlug(slug)
 
-  // find category
+  // Find the category that contains this query
   let category = null
   CATEGORIES.forEach(cat => {
     if (cat.items.find(q => toQuerySlug(q) === slug)) {
@@ -52,29 +56,26 @@ export default function QueryPage({ slug, query, category }) {
         <link rel="stylesheet" href="/styles.css" />
       </Head>
 
+      {/* Shared header with logo only */}
       <Header title={query} subtitle={`Category: ${category}`} />
-       <div className="brand">
-  <a href="/" aria-label="eHelp.tv home">
-    <img className="logo" src="/logo.png" alt="eHelp.tv" />
-  </a>
-</div>
-
-        <div style={{marginTop: 12}}>
-          <h1>{query}</h1>
-          <p className="note">Category: {category}</p>
-        </div>
-      </header>
 
       <main className="wrap">
-        <nav style={{marginBottom: 12}}>
+        <nav style={{ marginBottom: 12 }}>
           <Link href="/" className="viewall">← Home</Link>
-          <span style={{margin:'0 6px',color:'#cbd5e1'}}>·</span>
-          <Link href={`/category/${category.toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`} className="viewall">{category}</Link>
+          <span style={{ margin: '0 6px', color: '#cbd5e1' }}>·</span>
+          <Link
+            href={`/category/${category.toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
+            className="viewall"
+          >
+            {category}
+          </Link>
         </nav>
 
         <section className="section">
           <h2>How to {query}</h2>
-          <p style={{marginBottom:16}}>This is a placeholder page. Later you’ll embed videos, AI-generated steps, and resource links here.</p>
+          <p style={{ marginBottom: 16 }}>
+            This is a placeholder page. Later you’ll embed videos, AI-generated steps, and resource links here.
+          </p>
           <div className="card">
             <p className="muted">👋 Try wiring this up to an API or video search next.</p>
           </div>
