@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Header from '../../components/Header'
 import Link from 'next/link'
 import { CATEGORIES } from '../../lib/data'
 import { toSlug } from '../../lib/slug'
@@ -32,7 +32,10 @@ export default function CategoryPage({ categoryName, items }) {
         <link rel="stylesheet" href="/styles.css" />
       </Head>
 
-      <header className="wrap hero">
+      <Header
+  title={categoryName}
+  subtitle="These are starter items from your dataset. Plug your AI search later to show videos + steps."
+/>
         <div className="brand">
   <a href="/" aria-label="eHelp.tv home">
     <img className="logo" src="/logo.png" alt="eHelp.tv" />
