@@ -1,6 +1,7 @@
 // pages/category/index.js
-import Header from '../../components/Header'
+import Head from 'next/head'
 import Link from 'next/link'
+import Header from '../../components/Header'
 import { CATEGORIES } from '../../lib/data'
 import { toSlug } from '../../lib/slug'
 
@@ -15,12 +16,6 @@ export default function CategoryIndex() {
       </Head>
 
       <Header title="Browse Categories" subtitle="Find popular how-to topics by category" />
-        <div className="brand">
-  <a href="/" aria-label="eHelp.tv home">
-    <img className="logo" src="/logo.png" alt="eHelp.tv" />
-  </a>
-</div>
-      </header>
 
       <main className="wrap">
         <nav style={{marginBottom: 12}}>
