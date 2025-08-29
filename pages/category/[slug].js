@@ -1,4 +1,3 @@
-import Header from '../../components/Header'
 import Link from 'next/link'
 import { CATEGORIES } from '../../lib/data'
 import { toSlug } from '../../lib/slug'
