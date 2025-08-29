@@ -24,28 +24,28 @@ export default function Home() {
   }, [activeCat, allQueries, search])
 
   const onSearch = () => {
-    if (!search.trim()) { alert('Type a question first 🙂'); return }
-    alert('Search: ' + search + '\n\n(Next step: call AI and show results.)')
+    if (!search.trim()) {
+      alert('Type a question first :)')
+      return
+    }
+    alert('Search: ' + search)
   }
 
   return (
     <>
       <Head>
         <title>ehelp.tv — Learn Anything, Fast</title>
-        <meta name="description" content="Ask anything. Learn it fast. ehelp.tv finds the best videos and step-by-step guides for how-to questions." />
+        <meta name="description" content="Ask anything. Learn it fast." />
         <link rel="icon" href="/favicon.svg" />
         <link rel="stylesheet" href="/styles.css" />
       </Head>
 
-      {/* INLINE HEADER (logo only) */}
       <header className="wrap hero">
         <div className="brand">
           <a href="/" aria-label="eHelp.tv home">
             <img className="logo" src="/logo.png" alt="eHelp.tv" />
           </a>
         </div>
-
-        {/* Search bar lives inside header */}
         <div className="searchbar" style={{ marginTop: 12 }}>
           <input
             value={search}
@@ -56,35 +56,33 @@ export default function Home() {
           />
           <button type="button" onClick={onSearch}>Search</button>
         </div>
-        <p className="note">Starter layout — plug your AI search in later.</p>
+        <p className="note">Starter layout - plug your AI search in later.</p>
       </header>
 
       <main className="wrap">
-        {/* POPULAR TODAY */}
         <section className="section">
           <div className="section-head">
             <h2>Popular Today</h2>
             <a className="viewall" href="/category">View all</a>
           </div>
           <div className="grid cards">
-            {POPULAR_TODAY.map((item, i) => (
+            {POPULAR_TODAY.map((it, i) => (
               <a
                 key={i}
                 className="card card-pop"
-                href={`/q/${(item.query).toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
-                title={`Open ${item.category}`}
+                href={`/q/${it.query.toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
+                title={`Open ${it.category}`}
               >
                 <div className="card-top">
-                  <span className="chip">{item.category}</span>
+                  <span className="chip">{it.category}</span>
                 </div>
-                <h3>{item.query}</h3>
-                <p className="muted">~{item.volume.toLocaleString()} monthly searches</p>
+                <h3>{it.query}</h3>
+                <p className="muted">~{it.volume.toLocaleString()} monthly searches</p>
               </a>
             ))}
           </div>
         </section>
 
-        {/* BROWSE BY CATEGORY */}
         <section className="section">
           <div className="section-head">
             <h2>Browse by Category</h2>
@@ -92,19 +90,15 @@ export default function Home() {
               <button
                 className={`pill ${activeCat==='All' ? 'pill-active' : ''}`}
                 onClick={()=>setActiveCat('All')}
-              >
-                All
-              </button>
-              {CATEGORIES.map((c) => (
+              >All</button>
+              {CATEGORIES.map(c => (
                 <a
                   key={c.name}
                   className={`pill ${activeCat===c.name ? 'pill-active' : ''}`}
-                  href={`/category/${(c.name).toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
+                  href={`/category/${c.name.toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
                   onClick={(e)=>{ e.preventDefault(); setActiveCat(c.name); }}
                   title="Open category page (Cmd/Ctrl+Click to open new tab)"
-                >
-                  {c.name}
-                </a>
+                >{c.name}</a>
               ))}
             </div>
           </div>
@@ -114,7 +108,7 @@ export default function Home() {
               <a
                 key={`${row.query}-${i}`}
                 className="card"
-                href={`/q/${(row.query).toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
+                href={`/q/${row.query.toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
                 title={`Open ${row.query}`}
               >
                 <span className="chip">{row.category}</span>
@@ -124,7 +118,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA */}
         <section className="cta">
           <h2>Creators wanted</h2>
           <p>Upload tutorials and get paid when people learn from you. (Coming soon)</p>
