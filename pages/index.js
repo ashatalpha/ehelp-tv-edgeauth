@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { useMemo, useState } from 'react'
-import Header from '../components/Header'
 import { POPULAR_TODAY, CATEGORIES } from '../lib/data'
 
 export default function Home() {
