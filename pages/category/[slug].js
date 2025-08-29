@@ -1,3 +1,5 @@
+// pages/category/[slug].js
+import Head from 'next/head'
 import Link from 'next/link'
 import { CATEGORIES } from '../../lib/data'
 import { toSlug } from '../../lib/slug'
@@ -31,17 +33,13 @@ export default function CategoryPage({ categoryName, items }) {
         <link rel="stylesheet" href="/styles.css" />
       </Head>
 
-      <Header
-  title={categoryName}
-  subtitle="These are starter items from your dataset. Plug your AI search later to show videos + steps."
-/>
+      {/* INLINE HEADER */}
+      <header className="wrap hero">
         <div className="brand">
-  <a href="/" aria-label="eHelp.tv home">
-    <img className="logo" src="/logo.png" alt="eHelp.tv" />
-  </a>
-</div>
-
-        {/* Title block sits OUTSIDE the brand so tags stay balanced */}
+          <a href="/" aria-label="eHelp.tv home">
+            <img className="logo" src="/logo.png" alt="eHelp.tv" />
+          </a>
+        </div>
         <div style={{ marginTop: 12 }}>
           <h1>{categoryName}</h1>
           <p className="note">
@@ -60,7 +58,12 @@ export default function CategoryPage({ categoryName, items }) {
         <section className="section">
           <div className="grid cards">
             {items.map((q, i) => (
-              <a key={i} className="card" href="#">
+              <a
+                key={i}
+                className="card"
+                href={`/q/${q.toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}
+                title={`Open ${q}`}
+              >
                 <span className="chip">{categoryName}</span>
                 <h3>{q}</h3>
               </a>
