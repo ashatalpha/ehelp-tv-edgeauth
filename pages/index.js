@@ -15,9 +15,7 @@ export default function Home() {
   }, [])
 
   const filtered = useMemo(() => {
-    let data = activeCat === 'All'
-      ? allQueries
-      : allQueries.filter(q => q.category === activeCat)
+    let data = activeCat === 'All' ? allQueries : allQueries.filter(q => q.category === activeCat)
     if (search.trim()) {
       const s = search.trim().toLowerCase()
       data = data.filter(q => q.query.toLowerCase().includes(s))
@@ -26,10 +24,7 @@ export default function Home() {
   }, [activeCat, allQueries, search])
 
   const onSearch = () => {
-    if (!search.trim()) {
-      alert('Type a question first 🙂')
-      return
-    }
+    if (!search.trim()) { alert('Type a question first 🙂'); return }
     alert('Search: ' + search + '\n\n(Next step: call AI and show results.)')
   }
 
@@ -42,11 +37,15 @@ export default function Home() {
         <link rel="stylesheet" href="/styles.css" />
       </Head>
 
-      {/* Header with logo only */}
-      <Header />
+      {/* INLINE HEADER (logo only) */}
+      <header className="wrap hero">
+        <div className="brand">
+          <a href="/" aria-label="eHelp.tv home">
+            <img className="logo" src="/logo.png" alt="eHelp.tv" />
+          </a>
+        </div>
 
-      <main className="wrap">
-        {/* Search bar */}
+        {/* Search bar lives inside header */}
         <div className="searchbar" style={{ marginTop: 12 }}>
           <input
             value={search}
@@ -58,7 +57,9 @@ export default function Home() {
           <button type="button" onClick={onSearch}>Search</button>
         </div>
         <p className="note">Starter layout — plug your AI search in later.</p>
+      </header>
 
+      <main className="wrap">
         {/* POPULAR TODAY */}
         <section className="section">
           <div className="section-head">
