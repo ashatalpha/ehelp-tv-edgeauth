@@ -1,7 +1,6 @@
 // pages/category/index.js
 import Head from 'next/head'
 import Link from 'next/link'
-import Header from '../../components/Header'
 import { CATEGORIES } from '../../lib/data'
 import { toSlug } from '../../lib/slug'
 
