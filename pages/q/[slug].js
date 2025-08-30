@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Header from '../../components/Header'
+import Header from '../../components/Header.js'
 import { POPULAR_TODAY, CATEGORIES } from '../../lib/data'
 import { toQuerySlug, fromQuerySlug } from '../../lib/slug'
 
