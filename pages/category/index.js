@@ -1,35 +1,45 @@
-// pages/category/index.js
 import Head from 'next/head'
-import Link from 'next/link'
-import { CATEGORIES } from '../../lib/data'
-import { toSlug } from '../../lib/slug'
+import { useState } from 'react'
 
-export default function CategoryIndex() {
+export default function Home() {
+  const [search, setSearch] = useState('')
+
+  const onSearch = () => {
+    if (!search.trim()) { alert('Type a question first :)'); return }
+    alert('Search: ' + search)
+  }
+
   return (
     <>
       <Head>
-        <title>Browse Categories — ehelp.tv</title>
-        <meta name="description" content="Browse all how-to categories on ehelp.tv." />
+        <title>ehelp.tv — Learn Anything, Fast</title>
+        <meta name="description" content="Ask anything. Learn it fast." />
         <link rel="icon" href="/favicon.svg" />
         <link rel="stylesheet" href="/styles.css" />
       </Head>
 
-      <Header title="Browse Categories" subtitle="Find popular how-to topics by category" />
+      <header className="wrap hero">
+        <div className="brand">
+          <a href="/" aria-label="eHelp.tv home">
+            <img className="logo" src="/logo.png" alt="eHelp.tv" />
+          </a>
+        </div>
+      </header>
 
       <main className="wrap">
-        <nav style={{marginBottom: 12}}>
-          <Link href="/" className="viewall">← Back to Home</Link>
-        </nav>
-
         <section className="section">
-          <div className="grid cards">
-            {CATEGORIES.map((c) => (
-              <Link key={c.name} className="card" href={`/category/${toSlug(c.name)}`}>
-                <span className="chip">Category</span>
-                <h3>{c.name}</h3>
-                <p className="muted">{c.items.length} popular searches</p>
-              </Link>
-            ))}
+          <h2>Welcome</h2>
+          <p>If you can see this page, the build is working.</p>
+
+          <div className="searchbar" style={{ marginTop: 12 }}>
+            <input
+              value={search}
+              onChange={(e)=>setSearch(e.target.value)}
+              type="text"
+              placeholder="Try: How to fix a leaky faucet?"
+              aria-label="Search how-to"
+            />
+            <button type="button" onClick={onSearch}>Search</button>
           </div>
         </section>
       </main>
